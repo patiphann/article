@@ -61,10 +61,14 @@ var self = {
 			if (err){
 				res.status(888).send('Edit article fail!');
 		    }else{
-		    	var socketio = req.app.get('socketio'); // tacke out socket instance from the app container
-				socketio.sockets.emit('article.show', docs); // emit an event for all connected clients
+		    	if(docs === null){
+		    		res.status(888).send('Data could not be found!');
+		    	}else{
+		    		var socketio = req.app.get('socketio'); // tacke out socket instance from the app container
+					socketio.sockets.emit('article.show', docs); // emit an event for all connected clients
 
-                res.json( docs );
+	                res.json( docs );
+		    	}
 		   	}
 		});
 	},
