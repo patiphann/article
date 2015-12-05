@@ -50,6 +50,8 @@ app.run(function($rootScope, $location, $http, mainFunction, Socket){
 				$rootScope.articles.splice(key, 1);
 			}
 		}
+
+		$rootScope.lastEdit = 'Deleted data';
 	});
 
 	// view and edit
