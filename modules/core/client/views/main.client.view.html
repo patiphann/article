@@ -14,14 +14,23 @@
 			<thead>
 				<tr>
 					<th width="5%">#</th>
-					<th>Title</th>
-					<th width="20%">Last Update By</th>
-					<th width="20%">Last Update Date</th>
+					<th>
+						<span class="pointer" ng-click="order('title')">Title</span> 
+						<span class="sortorder" ng-show="predicate === 'title'" ng-class="{reverse:reverse}"></span>
+					</th>
+					<th width="20%">
+						<span class="pointer" ng-click="order('update_name')">Last Update By</span> 
+						<span class="sortorder" ng-show="predicate === 'update_name'" ng-class="{reverse:reverse}"></span>
+					</th>
+					<th width="20%">
+						<span class="pointer" ng-click="order('update_date')">Last Update Date</span> 
+						<span class="sortorder" ng-show="predicate === 'update_date'" ng-class="{reverse:reverse}"></span>
+					</th>
 					<th width="10%">View</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="(key, article) in articles | filter:search">
+				<tr ng-repeat="(key, article) in articles | filter:search | orderBy:predicate:reverse">
 					<td>{{ key+1 }}</td>
 					<td>{{ article.title }}</td>
 					<td>{{ article.update_name }}</td>
