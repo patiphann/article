@@ -9,6 +9,13 @@ body {
 	border: 0;
 }
 
+.sortorder:after {
+    content: '\25b2';
+}
+.sortorder.reverse:after {
+    content: '\25bc';
+}
+
 .font-16 {
 	font-size: 16px;
 }
