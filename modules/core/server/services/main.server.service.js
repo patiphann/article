@@ -5,7 +5,7 @@ app.factory('Socket', ['socketFactory',
     function(socketFactory) {
         return socketFactory({
             prefix: '',
-            ioSocket: io.connect('http://localhost:3000')
+            ioSocket: io.connect()
         });
     }
 ]);
@@ -55,8 +55,12 @@ app.run(function($rootScope, $location, $http, mainFunction, Socket){
 	// view and edit
 	Socket.on('article.show', function (data) {
 		// another client edit show
-		if($rootScope.user._id != data.update_by){
+		if($rootScope.user === undefined){
 			$rootScope.lastEdit = 'Last update by '+data.update_name;
+		}else{
+			if($rootScope.user._id != data.update_by){
+				$rootScope.lastEdit = 'Last update by '+data.update_name;
+			}
 		}
 		
 		$rootScope.article = data;
