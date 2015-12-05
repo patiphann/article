@@ -62,6 +62,15 @@ app.run(function($rootScope, $location, $http, mainFunction, Socket){
 				$rootScope.lastEdit = 'Last update by '+data.update_name;
 			}
 		}
+
+		// list
+		if($rootScope.articles !== undefined){
+			var key = mainFunction.array_in_id(data._id, $rootScope.articles);
+
+			if(key !== ''){
+				$rootScope.articles[key] = data;
+			}
+		}
 		
 		$rootScope.article = data;
 	});
