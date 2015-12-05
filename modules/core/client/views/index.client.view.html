@@ -1,0 +1,94 @@
+<html ng-app="core">
+    <head>
+        <title>Articles</title>
+
+        <!-- General META -->
+        <meta charset="utf-8">
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+        <!-- Semantic META -->
+        <meta name="keywords" content="Articles">
+        <meta name="description" content="Articles">
+
+        <!-- Fav Icon -->
+        <!--  <link href="/modules/core/img/brand/favicon.ico" rel="shortcut icon" type="image/x-icon"> -->
+        <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css"/>
+        <link rel="stylesheet" href="modules/core/client/views/main.css"/>
+    </head>
+    <nav class="navbar navbar-default navbar-fixed-top" ng-controller="loginController">
+        <div class="container">
+            <div class="form-inline top10 pull-left font-26"><font class="glyphicon glyphicon-th-list pointer" ui-sref="main"></font> </div>
+            <!-- Menu -->
+            <!-- Single button -->
+            <div class="form-inline top10 pull-left margin-0-10" ng-show="loggedIn">
+                <div class="btn-group" uib-dropdown>
+                    <button id="article-menu" type="button" class="btn btn-default background-none" uib-dropdown-toggle ng-disabled="disabled"> Articles <span class="caret"></span>
+                    </button>
+                    <ul class="uib-dropdown-menu" role="menu" aria-labelledby="article-menu">
+                        <li role="menuitem" class="pointer"><a ui-sref="newArticle">New Article</a></li>
+                        <li class="divider" style="margin: 4px 0;"></li>
+                        <li role="menuitem" class="pointer"><a ui-sref="listArticle">List Article</a></li>
+                    </ul>
+                </div>
+            </div>
+            <form class="form-inline top10 pull-right" id="loginForm" name="loginForm" ng-submit="loginUser()" ng-show="!loggedIn">
+                <div class="form-group" ng-class="{'has-error': (loginForm.email.$invalid || loginForm.email.$error.email || loginForm.email.$error.required) && loginForm.email.$dirty}">
+                    <label class="sr-only" for="email">Email address</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" ng-model="login.email" autocomplete="off" required>
+                </div>
+                <div class="form-group" ng-class="{'has-error': (loginForm.password.$invalid || loginForm.password.$error.minlength || loginForm.password.$error.maxlength) && loginForm.password.$dirty}">
+                    <label class="sr-only" for="password">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password" ng-model="login.password" ng-minlength="4" ng-maxlength="20" required>
+                </div>
+                <button type="submit" class="btn btn-success">Sign in</button> 
+                <button type="button" class="btn btn-default" ui-sref="signUp">Create An Account</button> 
+            </form>
+            <div class="form-inline top7 pull-right" ng-show="loggedIn">
+                Welcome : {{ user.name }} {{ user.surname }} 
+                <!-- Single button -->
+                <div class="btn-group" uib-dropdown>
+                    <button id="profile-menu" type="button" class="btn btn-default background-none" uib-dropdown-toggle ng-disabled="disabled"><font class="glyphicon glyphicon-cog font-26"></font>
+                    </button>
+                    <ul class="uib-dropdown-menu" role="menu" aria-labelledby="profile-menu">
+                        <li role="menuitem" class="pointer"><a ui-sref="editProfile">Edit Profile</a></li>
+                        <li class="divider" style="margin: 4px 0;"></li>
+                        <li role="menuitem" class="pointer"><a ng-click="logOut()" class="pointer">Logout</a></li>
+                    </ul>
+                </div>
+                <!-- <button type="button" class="btn btn-default" ui-sref="editProfile">Edit Profile</button>
+                <button type="button" class="btn btn-warning" ng-click="logout()">Logout</button> -->
+            </div>
+        </div>
+    </nav>
+    <body>
+        <div ui-view></div>
+    </body>
+    <script src="node_modules/angular/angular.js"></script>
+    <script src="node_modules/angular-ui-router/build/angular-ui-router.js"></script>
+    <script src="node_modules/angular-ui-bootstrap/ui-bootstrap.js"></script>
+    <script src="public/lib/socket.io-client/socket.io.js"></script>
+    <script src="public/lib/angular-socket-io/socket.js"></script>
+
+    <!-- Routes -->
+    <script src="modules/core/client/routes/main.client.route.js"></script>
+
+    <!-- service -->
+    <script src="modules/core/server/services/main.server.service.js"></script>
+    <script src="modules/core/server/services/auth.server.service.js"></script>
+
+    <!-- Controllers -->
+    <script src="modules/core/client/controllers/main.client.controller.js"></script>
+    <script src="modules/users/client/controllers/signup.client.controller.js"></script>
+    <script src="modules/users/client/controllers/users.client.controller.js"></script>
+    <script src="modules/users/client/controllers/edit.profile.client.controller.js"></script>
+    <script src="modules/articles/client/controllers/article.client.controller.js"></script>
+
+    <!-- Libraries -->
+    <script src="node_modules/ng-file-upload/dist/ng-file-upload.js"></script>
+    <script src="node_modules/ng-file-upload/dist/ng-file-upload-all.js"></script>
+    <script src="node_modules/ng-file-upload/dist/ng-file-upload-shim.js"></script>
+</html>
