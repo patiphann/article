@@ -66,9 +66,7 @@ var EditProfileController = require('./modules/users/server/controllers/edit.pro
 var ArticleController = require('./modules/articles/server/controllers/article.server.controller');
 
 // routes ======================================================================
-require('./modules/core/server/routes/routes.js')(app, passport, ArticleController);
-app.post('/edit-profile', multipartMiddleware, EditProfileController.editProfile);
-app.post('/edit-profile-img', multipartMiddleware, EditProfileController.editProfileImage);
+require('./modules/core/server/routes/routes.js')(app, passport, multipartMiddleware, ArticleController, EditProfileController);
 
 // launch ======================================================================
 // app.listen(port);
