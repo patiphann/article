@@ -1,6 +1,7 @@
 'use strict';
 
-module.exports = function (app, passport, ArticleController) {
+module.exports = function (app, passport, multipartMiddleware, ArticleController, EditProfileController) {
+    // index
     app.get('/',function(req, res){
         res.render('./modules/core/client/views/index.client.view.html');
     });
@@ -11,6 +12,7 @@ module.exports = function (app, passport, ArticleController) {
     //     failureFlash : true // allow flash messages
     // }));
 
+    // signup
 	app.post('/signup', function(req, res, next) {
         passport.authenticate('local-signup', function(err, user, info) {
             if (err) { return next(err); }
@@ -45,6 +47,7 @@ module.exports = function (app, passport, ArticleController) {
         })(req, res, next);
     });
 
+    // login
     app.post('/login', function(req, res, next) {
         passport.authenticate('local-login', function(err, user, info) {
             if (err) { return next(err); }
@@ -79,21 +82,34 @@ module.exports = function (app, passport, ArticleController) {
         })(req, res, next);
     });
 
+    // logout
     app.get('/logout', function(req, res){
     	req.logout();
     	res.json({ status: 'success' });
     });
 
+    // edit profile no image change
+    app.post('/edit-profile', multipartMiddleware, EditProfileController.editProfile);
+
+    // edit profile image change
+    app.post('/edit-profile-img', multipartMiddleware, EditProfileController.editProfileImage);
+
+    // save article
     app.post('/save-article', isLoggedIn, ArticleController.saveArticle);
 
+    // list article
     app.post('/list-article', ArticleController.listArticle);
 
+    // select article
     app.post('/data-article', ArticleController.dataArticle);
 
+    // edit article
     app.post('/edit-article', isLoggedIn, ArticleController.editArticle);
 
+    // delete article
     app.post('/del-article', isLoggedIn, ArticleController.delArticle);
 
+    // check login
     app.get('/check-auth', function(req, res){
     	var val = {};
 
