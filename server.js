@@ -30,10 +30,8 @@ require('./config/passport')(passport); // pass passport for configuration
 app.use(bodyParser.json());
 app.use(multipartMiddleware);
 app.use(express.static(path.join(__dirname, 'modules')));
-app.use('/modules', express.static(__dirname + '/modules'));
-app.use('/node_modules', express.static(__dirname + '/node_modules'));
-app.use('/modules/users/uploads', express.static( __dirname + '/modules/users/uploads' ));
-app.use('/public', express.static(__dirname + '/public'));
+app.use(express.static(path.join(__dirname, 'node_modules')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // set up our express application
 app.use(morgan('dev')); // log every request to the console
