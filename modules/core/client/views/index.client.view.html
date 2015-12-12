@@ -15,11 +15,11 @@
         <meta name="description" content="Articles">
 
         <!-- Fav Icon -->
-        <link href="/modules/core/img/brand/favicon.ico" rel="shortcut icon" type="image/x-icon">
+        <link href="core/img/brand/favicon.ico" rel="shortcut icon" type="image/x-icon">
 
         <!-- CSS -->
-        <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css"/>
-        <link rel="stylesheet" href="modules/core/client/views/main.css"/>
+        <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.css"/>
+        <link rel="stylesheet" href="core/client/views/main.css"/>
     </head>
     <nav class="navbar navbar-default" ng-controller="loginController">
         <div class="container">
@@ -69,28 +69,28 @@
     <body>
         <div ui-view></div>
     </body>
-    <script src="node_modules/angular/angular.js"></script>
-    <script src="node_modules/angular-ui-router/build/angular-ui-router.js"></script>
-    <script src="node_modules/angular-ui-bootstrap/ui-bootstrap.js"></script>
-    <script src="public/lib/socket.io-client/socket.io.js"></script>
-    <script src="public/lib/angular-socket-io/socket.js"></script>
+    <script src="angular/angular.js"></script>
+    <script src="angular-ui-router/build/angular-ui-router.js"></script>
+    <script src="angular-ui-bootstrap/ui-bootstrap.js"></script>
+    <script src="lib/socket.io-client/socket.io.js"></script>
+    <script src="lib/angular-socket-io/socket.js"></script>
 
     <!-- Routes -->
-    <script src="modules/core/client/routes/main.client.route.js"></script>
+    <script src="core/client/routes/main.client.route.js"></script>
 
     <!-- service -->
-    <script src="modules/core/server/services/main.server.service.js"></script>
-    <script src="modules/core/server/services/auth.server.service.js"></script>
+    <script src="core/server/services/main.server.service.js"></script>
+    <script src="core/server/services/auth.server.service.js"></script>
 
     <!-- Controllers -->
-    <script src="modules/core/client/controllers/main.client.controller.js"></script>
-    <script src="modules/users/client/controllers/signup.client.controller.js"></script>
-    <script src="modules/users/client/controllers/users.client.controller.js"></script>
-    <script src="modules/users/client/controllers/edit.profile.client.controller.js"></script>
-    <script src="modules/articles/client/controllers/article.client.controller.js"></script>
+    <script src="core/client/controllers/main.client.controller.js"></script>
+    <script src="users/client/controllers/signup.client.controller.js"></script>
+    <script src="users/client/controllers/users.client.controller.js"></script>
+    <script src="users/client/controllers/edit.profile.client.controller.js"></script>
+    <script src="articles/client/controllers/article.client.controller.js"></script>
 
     <!-- Libraries -->
-    <script src="node_modules/ng-file-upload/dist/ng-file-upload.js"></script>
-    <script src="node_modules/ng-file-upload/dist/ng-file-upload-all.js"></script>
-    <script src="node_modules/ng-file-upload/dist/ng-file-upload-shim.js"></script>
+    <script src="ng-file-upload/dist/ng-file-upload.js"></script>
+    <script src="ng-file-upload/dist/ng-file-upload-all.js"></script>
+    <script src="ng-file-upload/dist/ng-file-upload-shim.js"></script>
 </html>
