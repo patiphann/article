@@ -38,6 +38,11 @@ var userSchema = new Schema({
 	}
 }, { collection: 'articles' });
 
+// redis
+userSchema.set('redisCache', true);
+
+userSchema.set('expires', 60);
+
 module.exports = mongoose.model('articles', userSchema);
 
 // update: [{

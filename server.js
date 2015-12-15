@@ -22,7 +22,15 @@ var socketio = require('socket.io');
 var configDB = require('./config/database.js');
 
 // configuration ===============================================================
+var mongooseRedisCache = require("mongoose-redis-cache");
 mongoose.connect(configDB.url); // connect to our database
+
+mongooseRedisCache(mongoose, {
+	host: "localhost",
+	port: "6379",
+	// pass: "redisPass"
+	// options: "redisOptions"
+});
 
 require('./config/passport')(passport); // pass passport for configuration
 

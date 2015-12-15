@@ -7,16 +7,13 @@
 		$stateProvider
 			.state('main', {
 			url : '/',
-			templateUrl : 'core/client/views/main.client.view.html',
-			controller : 'MainController'
+			templateUrl : 'core/client/views/main.client.view.html'
 		}).state('signUp', {
 			url : '/signup',
-			templateUrl : 'users/client/views/signup.client.view.html',
-			controller : 'SignupController'
+			templateUrl : 'users/client/views/signup.client.view.html'
 		}).state('editProfile', {
 			url : '/edit-profile',
-			templateUrl : 'users/client/views/edit.profile.client.view.html',
-			controller : 'EditProfileController'
+			templateUrl : 'users/client/views/edit.profile.client.view.html'
 		}).state('newArticle', {
 			url : '/new-article',
 			templateUrl : 'articles/client/views/new.article.client.view.html'
