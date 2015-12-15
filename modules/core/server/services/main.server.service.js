@@ -65,15 +65,23 @@ app.run(function($rootScope, $location, $http, mainFunction, Socket){
 			}
 		}
 
-		// list
-		if($rootScope.articles !== undefined){
-			var key = mainFunction.array_in_id(data._id, $rootScope.articles);
+		// another client
+		if($rootScope.user._id != data.update_by){
+			if(confirm("Data is update by " + data.update_name + "!\nDo you want to change?")){
+				// list
+				if($rootScope.articles !== undefined){
+					var key = mainFunction.array_in_id(data._id, $rootScope.articles);
 
-			if(key !== ''){
-				$rootScope.articles[key] = data;
+					if(key !== ''){
+						$rootScope.articles[key] = data;
+					}
+				}
+
+				$rootScope.article = data;
 			}
+		// is me
+		}else{
+			$rootScope.article = data;
 		}
-		
-		$rootScope.article = data;
 	});
 });

@@ -26,7 +26,10 @@ var self = {
 		});
 	},
 	listArticle: function(req, res){
-		Article.find({}, {}, { sort: { 'update_date': -1 }}, function(err, docs){
+		Article.find({})
+		.sort({ 'update_date': -1 })
+		.limit(100)
+		.exec(function(err, docs){
 			if(err){
 				res.status(888).send('List article fail!');
 			}else{
