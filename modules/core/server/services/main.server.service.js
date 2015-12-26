@@ -56,6 +56,8 @@ app.run(function($rootScope, $location, $http, mainFunction, Socket){
 
 	// view and edit
 	Socket.on('article.show', function (data) {
+		$rootScope.lastEdit = '';
+
 		// another client edit show
 		if($rootScope.user === undefined){
 			$rootScope.lastEdit = 'Last update by '+data.update_name;
@@ -66,7 +68,7 @@ app.run(function($rootScope, $location, $http, mainFunction, Socket){
 		}
 
 		// another client
-		if($rootScope.user._id != data.update_by){
+		if($rootScope.lastEdit !== ''){
 			if(confirm("Data is update by " + data.update_name + "!\nDo you want to change?")){
 				// list
 				if($rootScope.articles !== undefined){
