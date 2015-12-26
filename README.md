@@ -14,16 +14,19 @@ $ sudo apt-get install nodejs
 ```
 
 * *Git* - Get git using a package manager or <a href="http://git-scm.com/downloads">download</a> it.
+* *Redis* - <a href="http://redis.io/download">Download</a> and Install Redis.
 
 ### Windows
 * *Node.js* - <a href="https://nodejs.org/en/">Download</a> and Install Node.js, nodeschool has free <a href=" http://nodeschool.io/#workshoppers">node tutorials</a> to get you started.
 * *MongoDB* - Follow the great tutorial from the mongodb site - <a href="https://docs.mongodb.org/manual/tutorial/install-mongodb-on-windows/">"Install Mongodb On Windows"</a>
 * *Git* - The easiest way to install git and then run the rest of the commands through the *git bash* application (via command prompt) is by downloading and installing <a href="http://git-scm.com/download/win">Git for Windows</a>
+* *Redis* - <a href="http://redis.io/download">Download</a> and Install Redis.
 
 ### OSX
 * *Node.js* -  <a href="https://nodejs.org/en/">Download</a> and Install Node.js or use the packages within brew or macports.
 * *MongoDB* - Follow the tutorial here - <a href="https://docs.mongodb.org/manual/tutorial/install-mongodb-on-os-x/">Install mongodb on OSX</a>
 * *git* - Get git <a href="http://git-scm.com/download/mac">from here</a>.
+* *Redis* - <a href="http://redis.io/download">Download</a> and Install Redis.
 
 ## Prerequisites
 Make sure you have installed all of the following prerequisites on your development machine:
