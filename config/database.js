@@ -1,5 +1,16 @@
 // config/database.js
-module.exports = {
-    // 'url' : 'mongodb://localhost:27017/articles' // looks like mongodb://<user>:<pass>@mongo.net:27017/articles
-    'url' : 'mongodb://localhost/articles' // looks like mongodb://<user>:<pass>@mongo.net:27017/articles
+var config = {};
+
+config.mongoURI = {
+	development: 'mongodb://localhost/articles', // looks like mongodb://<user>:<pass>@localhost:27017/articles
+	production: 'mongodb://localhost/articles-production',
+	test: 'mongodb://localhost/articles-test'
 };
+
+config.port = {
+	development: 3000,
+	production: 3002,
+	test: 3001
+}
+
+module.exports = config

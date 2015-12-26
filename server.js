@@ -4,7 +4,6 @@
 // get all the tools we need
 var express = require('express');
 var app = express();
-var port = process.env.PORT || 3000;
 var mongoose = require('mongoose');
 var passport = require('passport');
 var path = require('path');
@@ -19,11 +18,19 @@ var session = require('express-session');
 var http = require('http');
 var socketio = require('socket.io');
 
-var configDB = require('./config/database.js');
+var config = require('./config/database.js');
 
 // configuration ===============================================================
+var port = process.env.PORT || config.port[app.settings.env];
+
 var mongooseRedisCache = require("mongoose-redis-cache");
-mongoose.connect(configDB.url); // connect to our database
+mongoose.connect(config.mongoURI[app.settings.env], function(err, res) {
+  if(err) {
+    console.log('Error connecting to the database. ' + err);
+  } else {
+    console.log('Connected to Database: ' + config.mongoURI[app.settings.env]);
+  }
+});
 
 mongooseRedisCache(mongoose, {
 	host: "localhost",
@@ -77,4 +84,5 @@ require('./modules/core/server/routes/routes.js')(app, passport, multipartMiddle
 // launch ======================================================================
 // app.listen(port);
 app.get('server').listen(port);
+module.exports = app;
 console.log('The magic happens on port ' + port);
