@@ -19,7 +19,7 @@ module.exports.editProfileImage = function(req, res){
 
     var tempPath = file.path;
     var targetPath = path.join( __dirname, '../../uploads/' + userId + '.jpg'  );
-    var savePath = "/uploads/" + userId + '.jpg';
+    var savePath = "/users/uploads/" + userId + '.jpg';
 
     var is = fs.createReadStream(tempPath);
     var os = fs.createWriteStream(targetPath);
