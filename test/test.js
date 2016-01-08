@@ -95,7 +95,7 @@ describe('Login API',function(){
       res.body.should.have.property('surname');
       res.body.should.have.property('create_date');
       res.body.email.should.equal('test@test.com');
-      res.body.image.should.equal('/uploads/default.gif');
+      res.body.image.should.equal('/users/uploads/default.gif');
       res.body.name.should.equal('test');
       res.body.surname.should.equal('test');
       done();
@@ -134,7 +134,7 @@ describe('Edit Profile API',function(){
           res.body.should.have.property('name');
           res.body.should.have.property('surname');
           res.body.email.should.equal('test@test.com');
-          res.body.image.should.equal('/uploads/default.gif');
+          res.body.image.should.equal('/users/uploads/default.gif');
           res.body.name.should.equal('tests');
           res.body.surname.should.equal('tests');
           done();
