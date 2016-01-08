@@ -18,7 +18,7 @@ var userSchema = new Schema({
 	image: {
 		type: String,
 		trim: true,
-		default: '/uploads/default.gif'
+		default: '/users/uploads/default.gif'
 	},
 	name: {
 		type: String,
@@ -30,6 +30,18 @@ var userSchema = new Schema({
 		trim: true,
 		default: ''
 	},
+	facebook         : {
+        id           : String,
+        token        : String,
+        email        : String,
+        name         : String
+    },
+    google           : {
+        id           : String,
+        token        : String,
+        email        : String,
+        name         : String
+    },
 	create_date:{
 		type: String,
 		trim: true,

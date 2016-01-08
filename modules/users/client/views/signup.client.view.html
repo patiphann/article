@@ -1,5 +1,9 @@
 <div class="container" ng-controller="SignupController">
 	<form ng-submit="createUser()" name="signupForm">
+		<div class="form-group">
+			<a href="/auth/google" class="btn btn-danger"><span></span> Google</a> 
+			<a href="/auth/facebook" class="btn btn-primary"><span></span> Facebook</a>
+		</div>
 		<!-- show any messages that come back with authentication -->
 	    <div class="form-group">
 	        <div ng-if="message.length > 0" class="alert alert-danger">{{ message }}</div>
