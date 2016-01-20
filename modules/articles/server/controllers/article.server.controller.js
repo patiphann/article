@@ -3,6 +3,10 @@
 var Article = require('../models/article.server.model');
 // var User = require('../../../users/server/models/users.server.model');
 
+// bluebird
+// var Promise = require('bluebird');
+// var Users = Promise.promisifyAll(User);
+
 var self = {
 	saveArticle: function(req, res){
 		var val = req.body;
@@ -33,6 +37,29 @@ var self = {
 			if(err){
 				res.status(888).send('List article fail!');
 			}else{
+				/* // bluebird
+				var chkUser = { id: [], name: [], surname: []};
+
+				Promise.each(docs, function(data, key, length){
+					if(chkUser.id[data.update_by] !== undefined){
+						docs[key].update_name = chkUser.name[data.update_by] + ' ' + chkUser.surname[data.update_by];
+					}else{
+						return Users.findOneAsync({'_id': data.update_by})
+				        .then(function(doc){
+				        	// check select
+				        	chkUser.id[data.update_by] = data.update_by;
+				        	chkUser.name[data.update_by] = doc.name;
+				        	chkUser.surname[data.update_by] = doc.surname;
+
+				        	// set value
+				            docs[key].update_name = doc.name + ' ' + doc.surname;
+				        });
+					}
+				}).finally(function() {
+			    	// console.log(docs);
+			    	res.json(docs);
+			    }); */
+
 				res.json(docs);
 			}
 		});

@@ -1,8 +1,21 @@
 'use strict';
 
 var User = require('../models/users.server.model'),
+    Article = require('../../../articles/server/models/article.server.model'),
 	fs = require('fs-extra'),
 	path = require('path');
+
+// bluebird
+var Promise = require('bluebird');
+var Article = Promise.promisifyAll(Article);
+
+var updateCreateNameArticle = function(data){
+    return Article.update({ create_by: data._id }, { $set : { create_name: data.name+' '+data.surname }}, { multi: true });
+};
+
+var updateUpdateNameArticle = function(data){
+    return Article.update({ update_by: data._id }, { $set : { update_name: data.name+' '+data.surname }}, { multi: true });
+};
 
 module.exports.editProfileImage = function(req, res){
 
@@ -43,6 +56,17 @@ module.exports.editProfileImage = function(req, res){
 					//   if (err) return console.error(err)
 					//   console.log('remove success!')
 					// });
+
+                    // update create_name articles
+                    updateCreateNameArticle(docs)
+                    .then(function(create){
+                        // update update_name articles
+                        updateUpdateNameArticle(docs)
+                        .then(function(update){
+                            console.log(update);
+                        });
+                    });
+
                     res.json({ _id: userId, email: docs.email, image: savePath, name: docs.name, surname: docs.surname });
 			   	}
 			});
@@ -58,11 +82,17 @@ module.exports.editProfile = function(req, res){
         if (err){
             res.status(888).send('Edit profile fail!');
         }else{
-            // delete old image
-            // fs.remove( '../..' + docs.image, function (err) {
-            //   if (err) return console.error(err)
-            //   console.log('remove success!')
-            // });
+
+            // update create_name articles
+            updateCreateNameArticle(docs)
+            .then(function(create){
+                // update update_name articles
+                updateUpdateNameArticle(docs)
+                .then(function(update){
+                    console.log(update);
+                });
+            });
+
             res.json({ _id: userId, email: docs.email, image: docs.image, name: docs.name, surname: docs.surname });
         }
     });
