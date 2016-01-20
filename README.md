@@ -57,6 +57,16 @@ Then, open a browser and go to:
 http://localhost:3000
 ```
 
+### Invoke node with a task manager for test mocha
+```bash
+$ mocha test
+```
+
+### Invoke node with a task manager for developer
+```bash
+$ gulp
+```
+
 #### Installation problems on Windows 8 / 8.1
 Some of project dependencies uses [node-gyp](https://github.com/nodejs/node-gyp) with supported Python version 2.7.x. So if you see an error related to node-gyp rebuild follow next steps:
 

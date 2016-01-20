@@ -9,8 +9,8 @@ config.mongoURI = {
 
 config.port = {
 	development: 3000,
-	production: 3002,
-	test: 3001
+	production: 8080,
+	test: 3002
 }
 
 module.exports = config
