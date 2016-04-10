@@ -2,7 +2,7 @@
 	angular.module('core')
 	.controller('loginController', ['$scope', '$rootScope', '$state', '$http', '$location', function($scope, $rootScope, $state, $http, $location){
 		$scope.loginUser = function(){
-			$http.post('login', $scope.login)
+			$http.post('api/login', $scope.login)
 			.success(function(res){
 				if(res._id === undefined){
 					delete $scope.login;

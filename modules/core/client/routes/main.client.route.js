@@ -1,5 +1,5 @@
 (function(){
-	angular.module('core', ['ui.router', 'ui.bootstrap', 'ngFileUpload', 'btford.socket-io'])
+	angular.module('core', ['ui.router', 'ui.bootstrap', 'angular-loading-bar', 'ngAnimate', 'ngFileUpload', 'btford.socket-io'])
 	.config(function($stateProvider, $urlRouterProvider){
 
 		$urlRouterProvider.otherwise('/');
