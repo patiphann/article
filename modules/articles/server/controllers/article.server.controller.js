@@ -32,7 +32,7 @@ var self = {
 	listArticle: function(req, res){
 		Article.find({})
 		.sort({ 'update_date': -1 })
-		.limit(100)
+		.limit(20)
 		.exec(function(err, docs){
 			if(err){
 				res.status(888).send('List article fail!');

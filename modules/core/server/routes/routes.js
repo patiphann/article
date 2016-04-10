@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function (app, passport, multipartMiddleware, ArticleController, EditProfileController) {
+module.exports = function (app, passport, apiRoutes, multipartMiddleware, ArticleController, EditProfileController) {
     // index
     app.get('/',function(req, res){
         res.render('./modules/core/client/views/index.client.view.html');
@@ -13,7 +13,7 @@ module.exports = function (app, passport, multipartMiddleware, ArticleController
     // }));
 
     // signup
-	app.post('/signup', function(req, res, next) {
+	apiRoutes.post('/signup', function(req, res, next) {
         passport.authenticate('local-signup', function(err, user, info) {
             if (err) { return next(err); }
             // if (!user) { return res.redirect('/signup'); }
@@ -48,7 +48,7 @@ module.exports = function (app, passport, multipartMiddleware, ArticleController
     });
 
     // login
-    app.post('/login', function(req, res, next) {
+    apiRoutes.post('/login', function(req, res, next) {
         passport.authenticate('local-login', function(err, user, info) {
             if (err) { return next(err); }
             // if (!user) { return res.redirect('/signup'); }

@@ -4,6 +4,7 @@
 // get all the tools we need
 var express = require('express');
 var app = express();
+var apiRoutes = express.Router(); 
 var mongoose = require('mongoose');
 var passport = require('passport');
 var path = require('path');
@@ -17,6 +18,7 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var http = require('http');
 var socketio = require('socket.io');
+var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 
 var config = require('./config/database.js');
 
@@ -42,7 +44,8 @@ mongooseRedisCache(mongoose, {
 require('./config/passport')(passport); // pass passport for configuration
 
 // use 'static' middleware
-app.use(bodyParser.json());
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(multipartMiddleware);
 app.use(express.static(path.join(__dirname, 'modules')));
 app.use(express.static(path.join(__dirname, 'node_modules')));
@@ -57,7 +60,7 @@ app.set('views', './');
 
 // required for passport
 app.use(session({
-  secret: 'keyboard cat',
+  secret: config.secret,
   resave: false,
   saveUninitialized: true,
   httpOnly: true, // httpOnly prevents browser JavaScript from accessing cookies.
@@ -78,8 +81,41 @@ app.set('server', server);
 var EditProfileController = require('./modules/users/server/controllers/edit.profile.server.controller');
 var ArticleController = require('./modules/articles/server/controllers/article.server.controller');
 
+// create token
+var tokenKey = jwt.sign({ foo: 'bar' }, config.secret);
+
 // routes ======================================================================
-require('./modules/core/server/routes/routes.js')(app, passport, multipartMiddleware, ArticleController, EditProfileController);
+// route middleware to verify a token
+apiRoutes.use(function(req, res, next) {
+  // check header or url parameters or post parameters for token
+  var token = req.body.token || req.query.token || req.headers['x-access-token'];
+
+  // decode token
+  if (token) {
+    // verifies secret and checks exp
+    jwt.verify(token, config.secret, function(err, decoded) {      
+      if (err) {
+        return res.json({ success: false, message: 'Failed to authenticate token.' });    
+      } else {
+        // if everything is good, save to request for use in other routes
+        req.decoded = decoded;    
+        next();
+      }
+    });
+  } else {
+    // if there is no token
+    // return an error
+    return res.status(403).send({ 
+        success: false, 
+        message: 'No token provided.' 
+    });
+  }
+});
+
+// apply the routes to our application with the prefix /api
+app.use('/api', apiRoutes);
+
+require('./modules/core/server/routes/routes.js')(app, passport, apiRoutes, multipartMiddleware, ArticleController, EditProfileController);
 
 // launch ======================================================================
 // app.listen(port);

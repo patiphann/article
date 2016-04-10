@@ -33,6 +33,8 @@ app.factory('mainFunction', function() {
 // run
 app.run(function($rootScope, $location, $http, mainFunction, Socket){
 
+	$http.defaults.headers.common['x-access-token'] = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmb28iOiJiYXIiLCJpYXQiOjE0NTk2ODM3MDl9.xdoBrquL0K8JnmLOMu7wyWNIDTOY78_6PdXyDgwNfI8';
+
 	// create
 	Socket.on('article.created', function (data) {
 		// show list

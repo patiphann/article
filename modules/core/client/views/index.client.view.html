@@ -20,6 +20,7 @@
         <!-- CSS -->
         <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.css"/>
         <link rel="stylesheet" href="core/client/views/main.css"/>
+        <link rel="stylesheet" href="angular-loading-bar/build/loading-bar.min.css" type="text/css" media="all" />
     </head>
     <nav class="navbar navbar-default" ng-controller="loginController">
         <div class="container">
@@ -71,28 +72,30 @@
     <body>
         <div ui-view></div>
     </body>
-    <script src="angular/angular.js"></script>
-    <script src="angular-ui-router/build/angular-ui-router.js"></script>
-    <script src="angular-ui-bootstrap/ui-bootstrap.js"></script>
-    <script src="lib/socket.io-client/socket.io.js"></script>
-    <script src="lib/angular-socket-io/socket.js"></script>
+    <script type="text/javascript" src="angular/angular.js"></script>
+    <script type="text/javascript" src="angular-ui-router/release/angular-ui-router.js"></script>
+    <script type="text/javascript" src="angular-animate/angular-animate.min.js"></script>
+    <script type="text/javascript" src="angular-ui-bootstrap/ui-bootstrap.js"></script>
+    <script type="text/javascript" src="lib/socket.io-client/socket.io.js"></script>
+    <script type="text/javascript" src="lib/angular-socket-io/socket.js"></script>
+    <script type="text/javascript" src="angular-loading-bar/build/loading-bar.min.js"></script>
 
     <!-- Routes -->
-    <script src="core/client/routes/main.client.route.js"></script>
+    <script type="text/javascript" src="core/client/routes/main.client.route.js"></script>
 
     <!-- service -->
-    <script src="core/server/services/main.server.service.js"></script>
-    <script src="core/server/services/auth.server.service.js"></script>
+    <script type="text/javascript" src="core/server/services/main.server.service.js"></script>
+    <script type="text/javascript" src="core/server/services/auth.server.service.js"></script>
 
     <!-- Controllers -->
-    <script src="core/client/controllers/main.client.controller.js"></script>
-    <script src="users/client/controllers/signup.client.controller.js"></script>
-    <script src="users/client/controllers/users.client.controller.js"></script>
-    <script src="users/client/controllers/edit.profile.client.controller.js"></script>
-    <script src="articles/client/controllers/article.client.controller.js"></script>
+    <script type="text/javascript" src="core/client/controllers/main.client.controller.js"></script>
+    <script type="text/javascript" src="users/client/controllers/signup.client.controller.js"></script>
+    <script type="text/javascript" src="users/client/controllers/users.client.controller.js"></script>
+    <script type="text/javascript" src="users/client/controllers/edit.profile.client.controller.js"></script>
+    <script type="text/javascript" src="articles/client/controllers/article.client.controller.js"></script>
 
     <!-- Libraries -->
-    <script src="ng-file-upload/dist/ng-file-upload.js"></script>
-    <script src="ng-file-upload/dist/ng-file-upload-all.js"></script>
-    <script src="ng-file-upload/dist/ng-file-upload-shim.js"></script>
+    <script type="text/javascript" src="ng-file-upload/dist/ng-file-upload.js"></script>
+    <script type="text/javascript" src="ng-file-upload/dist/ng-file-upload-all.js"></script>
+    <script type="text/javascript" src="ng-file-upload/dist/ng-file-upload-shim.js"></script>
 </html>
